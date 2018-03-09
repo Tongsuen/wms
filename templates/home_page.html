@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+  <!-- <h1>Hello, world!</h1>
+  {% if request.user.is_authenticated %}
+        already login
+  {% endif %} -->
+<header>
+      <div class="content-header row">
+        {% if request.user.is_authenticated %}
+
+        <div class="card text-center col-12" style="width: 18rem;">
+          <h1 class="title">Mola Mola</h1>
+          <div class="card-body">
+             <p class="card-text">หากมีข้อสงสัยในการใช้โปรเเกรม Mola Mola กรุณาติดต่อเจ้าหน้าที่ค่ะ</p>
+              <a href="{% url 'program_page' %}" class="btn  button signin-btn">เข้าสู่โปรเเกรม</a>
+              <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+              <button type="submit"  class="btn  button signin-btn">ออกจากระบบ</button>
+            </form>
+          </div>
+        </div>
+
+        {% else %}
+        <div class="card text-center signup-card col-12 col-sm-6 col-md-6" style="width: 18rem;">
+          <div class="card-header">
+            สมัครใช้บริการ
+          </div>
+          <div class="card-body">
+            <form id="s-form">{% csrf_token %}
+              <div class="form-group text-left">
+                <label for="email-id">อีเมลล์</label>
+                <input name="email" type="email" class="form-control" id="email-id" aria-describedby="emailHelp" placeholder="Enter email">
+                <div id="email-notice">
+
+               </div>
+              </div>
+              <div class="form-group text-left">
+                <label for="pass-id">รหัสผ่าน</label>
+                <input name="password" type="password" class="form-control" id="pass-id" placeholder="รหัสผ่าน">
+              </div>
+              <div class="form-group text-left">
+                <label for="confirm-pass-id">ยืนรหัสผ่าน</label>
+                <input name="password2" type="password" class="form-control" id="confirm-pass-id" placeholder="ยืนรหัสผ่าน">
+                <div id="password-notice">
+
+               </div>
+              </div>
+              <div class="form-check text-left">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1"><a class="term-link" href="{% url 'term' %}">ยอมรับเงื่อนไขบริการ</a></label>
+              </div>
+
+              <button type="submit" class="btn  button signin-btn">สมัครใช้บริการ</button>
+            </form>
+
+          </div>
+        </div>
+        <div class="d-none d-md-block col-md-1">
+
+
+        </div>
+        <div class="card text-center signin-card col-12 col-sm-6 col-md-5" style="width: 18rem;">
+          <div class="card-header">
+            เข้าสู่ระบบ
+          </div>
+          <div class="card-body">
+            <form id="signin-form">{% csrf_token %}
+              <div class="form-group text-left">
+                <label for="email-signin-id">อีเมลล์</label>
+                <input name="email" type="email" class="form-control" id="email-signin-id" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class=" form-group text-left">
+                <label for="pass-signin-id">รหัสผ่าน</label>
+                <input name="password" type="password" class="form-control" id="pass-signin-id" placeholder="รหัสผ่าน">
+                <div id="login-notice">
+
+               </div>
+              </div>
+
+              <button type="submit" class="btn  button signin-btn">เข้าสู่ระบบ</button>
+            </form>
+          </div>
+        </div>
+
+        {% endif %}
+
+
+      </div>
+
+</header>
+<section class="service">
+    <div class="container">
+        <div class="row">
+            <div class="text-center col-12 header-title-service">
+              <h1>Mola Mola</h1>
+            </div>
+            <div class="col-12">
+                <div class="card service-card col-12">
+                  <div class="card-body">
+                    <h5 class="card-title">บริการ ABC</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <button  class="btn float-right button signin-btn">เรียนรู้เพิ่มเติม</button>
+                  </div>
+                </div>
+                <div class="card service-card col-12">
+                  <div class="card-body">
+                    <h5 class="card-title">บริการ DDSDS</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <button  class="btn float-right button signin-btn">เรียนรู้เพิ่มเติม</button>
+                  </div>
+                </div>
+                <div class="card service-card col-12">
+                  <div class="card-body">
+                    <h5 class="card-title">บริการ GLSD</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <button  class="btn float-right button signin-btn">เรียนรู้เพิ่มเติม</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-us">
+  <div class="container">
+      <div class="row">
+        <div class="about-us-text">
+          "Loud music blares from speakers perched just feet away from a main road, covering the busy marketplaces of Ajah, Lagos in sound. Passersby stroll past dozens of clothing stalls, fresh produce stands, and shops with CDs and DVDs in bright paper sleeves strewn along the ground and arranged on crowded wooden walls. This particular shop falls in a line of similar-looking stalls, selling pirated versions of popular American television shows, movies, and, of course, Nollywood films. It has a large selection of local films and a few chatty customers, so I walk in."
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card card-people text-white col-12 col-sm-12 col-md-4 left-card-people">
+          <img class="card-img" src='{% static 'img/people.jpg' %}' alt="Card image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">นวรักษ์ กลิ่มสี</h5>
+            <p class="card-text">ใช้บริการ Mola Mola มาเป็นเวลาสิบปีไม่เคยทำให้ผิดหวังเลยค่ะ ส่งของตรงเวลา ราคาเป็นกันเอง ไม่ต้องกังวลว่าจะไม่มีที่เก็บของ</p>
+          </div>
+        </div>
+
+
+        <div class="card card-people text-white col-12 col-sm-12 col-md-4 center-card-people">
+          <img class="card-img" src='{% static 'img/people2.jpg' %}' alt="Card image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">นวรักษ์ กลิ่มสี</h5>
+            <p class="card-text">ใช้บริการ Mola Mola มาเป็นเวลาสิบปีไม่เคยทำให้ผิดหวังเลยค่ะ ส่งของตรงเวลา ราคาเป็นกันเอง ไม่ต้องกังวลว่าจะไม่มีที่เก็บของ</p>
+          </div>
+        </div>
+
+        <div class="card card-people text-white col-12 col-sm-12  col-md-4 right-card-people">
+          <img class="card-img" src='{% static 'img/people3.jpg' %}' alt="Card image">
+          <div class="card-img-overlay">
+            <h5 class="card-title">นวรักษ์ กลิ่มสี</h5>
+            <p class="card-text">ใช้บริการ Mola Mola มาเป็นเวลาสิบปีไม่เคยทำให้ผิดหวังเลยค่ะ ส่งของตรงเวลา ราคาเป็นกันเอง ไม่ต้องกังวลว่าจะไม่มีที่เก็บของ</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+  var frm = $('#s-form');
+  frm.submit(function (event) {
+  event.preventDefault()
+      var formData = new FormData(this);
+        $("email-notice").removeClass('invalid');
+        $("input#email-id").removeClass('is-invalid');
+        $('#password-notice').removeClass('invalid');
+        $("input#confirm-pass-id").removeClass('is-invalid');
+         console.log( $("#pass-id").val() + ": " + $("#confirm-pass-id").val());
+        if ($("#pass-id").val() != $("#confirm-pass-id").val()) {
+
+          $('#password-notice').addClass('invalid');
+          $('#password-notice').html("รหัสผ่านไม่ตรง") ;
+          $("input#confirm-pass-id").addClass('is-invalid');
+        }
+        else {
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'register_action' %}',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+               if (data.is_register) {
+                 window.location.replace('{% url 'home' %}');
+               }
+               else if (data.is_error) {
+                 console.log(data);
+
+                 if (data.error_code == 1) {
+                    $('#email-notice').addClass('invalid')
+                    $('#email-notice').html("อีเมลล์ถูกใช้ไปเเล้ว") ;
+                     $("input#email-id").addClass('is-invalid');
+                     $("input#email-id").focus();
+                 }
+                 else if(data.error_code == 3) {
+                   $('#email-notice').addClass('invalid')
+                   $('#email-notice').html("กรอกอีเมลล์ให้ถูกต้อง") ;
+                    $("input#email-id").addClass('is-invalid');
+                    $("input#email-id").focus();
+                 }
+                 else {
+                   $('#email-notice').html("เกิดข้อผิดพลาด") ;
+                 }
+
+
+
+               }
+
+            },
+            error: function(data) {
+
+              console.log(data);
+              $('#email-notice').addClass('invalid')
+              $('#email-notice').html("อีเมลล์ถูกใช้ไปเเล้ว") ;
+
+              $("input#email-id").addClass('is-invalid');
+              $("input#email-id").focus();
+            }
+
+        });
+  }
+      return false;
+
+  });
+  var frm = $('#signin-form');
+  frm.submit(function (event) {
+
+      var formData = new FormData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'login_action' %}',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+               if (data.is_error) {
+                 $('#login-notice').addClass('invalid')
+                 $('#login-notice').html("อีเมลล์ หรือ รหัสผ่านไม่ถูกต้อง") ;
+               }
+               else if (data.is_login) {
+                 window.location.replace('{% url 'home' %}');
+               }
+
+            },
+            error: function(data) {
+              $('#login-notice').addClass('invalid')
+              $('#login-notice').html("ไม่สามารถเข้าสู่ระบบได้") ;
+              console.log(data);
+
+            }
+        });
+
+      return false;
+  });
+
+</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+
+
+@media  (max-width: 767.99px){ /* medium tablet pc*/
+
+  .navbar-top-links .dropdown-alerts {
+    margin-left:0px;
+  }
+  .navbar-top-links .dropdown-user {
+    right:auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) { /* normal pc */
+
+}
+
+@media (min-width: 992px){ /* large */
+
+}

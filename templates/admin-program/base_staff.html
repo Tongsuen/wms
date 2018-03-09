@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Mola Mola Program</title>
+    <link href='{% static 'vendor/bootstrap/css/bootstrap.min.css' %}' rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href='{% static 'vendor/metisMenu/metisMenu.min.css' %}' rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href='{% static 'vendor/css/sb-admin-2.css' %}' rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href='{% static 'vendor/font-awesome/css/font-awesome.min.css' %}' rel="stylesheet" type="text/css">
+
+
+    <link href='{% static 'css/style_program.css' %}' rel="stylesheet">
+    <link href='{% static 'css/query_program.css' %}' rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pattaya|Prompt" rel="stylesheet">
+
+    <link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+
+
+    {% block base_head %}{% endblock %}
+  </head>
+  <body>
+    <div id="wrapper content">
+    {% include 'admin-program/nav.html' %}
+
+    {% block content %}{% endblock %}
+
+    </div>
+
+    {% include 'program/js.html' %}
+    {% block js %}{% endblock %}
+
+    </body>
+</html>

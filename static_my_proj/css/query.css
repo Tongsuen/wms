@@ -1,0 +1,127 @@
+
+
+ @media (max-width: 359.99px) { /* extra small phone */
+   .signup-card {
+
+     margin-top: -10px;
+
+   }
+   .signin-card {
+
+     margin-top: 10px;
+
+   }
+   .content-header {
+         left: 55%;
+   }
+   header {
+         min-height: 930px;
+   }
+   .card-people  {
+
+     min-height:200px;
+     margin-bottom: 10px;
+   }
+   .card-img {
+     height: 240px;
+     object-fit: cover;
+   }
+   .center-card-people {
+     margin-right: auto;
+     margin-left: auto;
+   }
+   .right-card-people{
+     margin-right:auto;
+   }
+   .left-card-people {
+       margin-left:auto;
+   }
+}
+
+@media (min-width: 360px) and (max-width: 575.99px) { /* small phone tablet*/
+  .signup-card {
+
+    margin-top: 10px;
+
+  }
+  header {
+        min-height: 930px;
+  }
+  .content-header {
+        top: 50%;
+        left: 55%;
+  }
+  .signup-card {
+      margin-bottom: 5px;
+  }
+  .signin-card {
+      margin-bottom: -20px;
+  }
+
+  .card-people  {
+
+    min-height:200px;
+    margin: 10px;
+  }
+  .card-img {
+    height: 240px;
+    object-fit: cover;
+  }
+  .center-card-people {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .right-card-people{
+    margin-right:auto;
+  }
+  .left-card-people {
+      margin-left:auto;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 767.99px){ /* medium tablet pc*/
+  .content-header {
+        min-width: 550px;
+  }
+  .content-header {
+        left: 55%;
+
+  }
+  .signup-card {
+    margin-left: -10px;
+  }
+  .signin-card {
+      margin-left: 10px;
+  }
+  .card-people  {
+
+    min-height:200px;
+    margin-bottom: 10px;
+  }
+  .card-img {
+    height: 240px;
+    object-fit: cover;
+  }
+  .center-card-people {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .right-card-people{
+    margin-right:auto;
+  }
+  .left-card-people {
+      margin-left:auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) { /* normal pc */
+
+  .content-header {
+        min-width: 550px;
+  }
+}
+
+@media (min-width: 992px){ /* large */
+
+}

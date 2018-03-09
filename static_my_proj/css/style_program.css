@@ -1,0 +1,193 @@
+.navbar-default .navbar-brand {
+  color:#FF6F00;
+  font-family: 'Pattaya', sans-serif;
+  font-size: 150%;
+}
+a {
+  color:#FF6F00;
+}
+a:focus, a:hover {
+  color:#FF8F39;
+}
+body {
+  color: #555;
+  font-family: 'Prompt', sans-serif;
+}
+.username {
+  padding-left: 20px;
+}
+.desc-shipping {
+  margin-top: 10px;
+  font-size: 80%;
+
+}
+.button {
+    margin: 5px;
+    height: 35px;
+    background-color: #e5658a;
+    border-color: #e5658a;
+    color: white;
+    position: relative;
+    border-radius: 5px;
+}
+.button:hover {
+    background-color: white;
+    border-color: #e5658a;
+    color: #e5658a;
+}
+
+.title-shipping {
+  font-size: 120%;
+
+}
+.panel {
+  background-color: #e5658a;
+  color:white;
+}
+.panel:hover {
+  background-color: white;
+  color:#e5658a;
+  border: 1px solid #e5658a;
+}
+.panel-default>.panel-heading {
+    color: #555;
+    background-color: white;
+    font-size: 150%;
+}
+.line{
+  width: 25%;
+  height: 10px;
+  border-bottom: 2px solid #e5658a;
+  margin-bottom: 25px;
+  margin-left: 40%;
+}
+.input-group .form-control {
+  min-width: 60px;
+}
+.spinner input {
+  text-align: right;
+}
+
+.input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 2%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  margin-left: -1px;
+  position: relative;
+  border-radius: 0;
+}
+
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical i {
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
+.outer-address {
+  padding: 10px;
+      height: 250px;
+}
+.address_choose {
+    border: 4px solid #e5658a;
+    height: 100%;
+    padding: 10px;
+
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+.plus {
+  padding: 10px;
+  height: 250px;
+  cursor: pointer;
+}
+.address_unchoose {
+
+  border: 0.5px solid #555;
+  padding: 10px;
+  height: 100%;
+  cursor: pointer;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+.address_choose .card-header {
+  color:#e5658a;
+}
+.review_order {
+  margin-top: 50px;
+
+}
+.submit_fix_address{
+  background-color: #555;
+  color:white;
+  border-color: white;
+  position: absolute;
+  bottom:0;
+  right: 0;
+}
+.card-header {
+  background-color: white;
+  color:#555;
+  text-align: center;
+}
+.fa-plus-square {
+  font-size: 300%;
+  position: absolute;
+  top:15%;
+  left:5%;
+}
+.fa-plus-square div {
+  font-size: 50%;
+  display: inline;
+  margin-left: 10px;
+}
+.address-area {
+  height: 120px;
+  width: 100%;
+}
+.textwrapper
+{
+  float:left;
+  width:100%;
+}
+.ds-ka {
+  margin-top: 20px;
+}
+.ds-ka-body {
+  font-size: 100%;
+}
+#page-wrapper {
+  margin-bottom: 50px;
+}
+.check_button {
+  min-width: 102px;
+}
+.fa-times {
+  color:red;
+}
+.fa-check {
+  color:green;
+}
+.fa-hand-o-right {
+  color:#e5658a;
+}
+.block {
+  height: 10px;
+}

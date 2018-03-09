@@ -1,0 +1,563 @@
+{% extends "program/base_program.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+
+
+        <div id="page-wrapper">
+
+          <div class="row">
+
+            <div class="col-lg-12">
+                    <h1 class="page-header">คลังสินค้าของคุณ</h1>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <a href="{% url 'reciever_product' %}">
+                  <div class="panel">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-bus fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                  <div class="title-shipping">รับสินค้าตามที่อยู่ของลูกค้า</div>
+                                  <div class="desc-shipping">กรอกที่อยู่ตามเเบบฟอร์มที่จัดเตรียมไว้ให้เพื่อให้ทีมงานไปรับสินค้า</div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+
+                  </a>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <a href="#">
+                  <div class="panel">
+                      <div class="panel-heading">
+                          <div class="row">
+                              <div class="col-xs-3">
+                                  <i class="fa fa-car fa-5x"></i>
+                              </div>
+                              <div class="col-xs-9 text-right">
+                                <div class="title-shipping">ส่งสินค้าของคุณมาที่บริษัท</div>
+                                <div class="desc-shipping">กรอกที่อยู่ตามเเบบฟอร์มที่จัดเตรียมไว้ให้เพื่อให้ทีมงานตรวจสอบ</div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+                </a>
+              </div>
+          </div>
+
+
+          <div class="row">
+                          {% if list_for_take %}
+                          <div class="col-lg-12">
+                              <div class="panel-default">
+                                  <div class="panel-heading">
+                                      คุณมีคำสั่งรับของ กำลังดำเนินการ ....
+                                  </div>
+
+                                  <div class="row">
+                                        {% for ad in list_for_take %}
+                                        <div class="card col-md-4 ds-ka">
+                                          <div class="card-header">
+                                            {{ ad.name }}
+                                          </div>
+                                          <div class="card-body">
+                                            <blockquote class="blockquote mb-0 ds-ka-body">
+                                              <p>  {{ ad.detail }}</p>
+                                              <p>
+                                                  {{ ad.product_detail }}
+                                              </p>
+                                              <footer class="blockquote-footer">{{ ad.tel }}</footer>
+                                            </blockquote>
+                                          </div>
+                                        </div>
+                                        {% endfor %}
+                                  </div>
+                              </div>
+
+                          </div>
+                          {% endif %}
+                          {% if product_in_store %}
+                          <div class="col-lg-12">
+                              <div class="panel-default">
+                                  <div class="panel-heading">
+                                      สินค้าทั้งหมดของคุณที่อยู่ในคลังสินค้าของเรา
+                                  </div>
+                                  <!-- /.panel-heading -->
+
+
+                                  <div class="panel-body row">
+                                    <form id ="order-form">
+
+                                      {% csrf_token %}
+                                      <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                          <thead>
+                                              <tr>
+                                                  <th>
+                                                    <input type="checkbox" id="check_all" name="_select-all" value="5">
+                                                  </th>
+                                                  <th>ชื่อ</th>
+                                                  <th>จำนวนสินค้า</th>
+                                                  <th>รายละเอียดสินค้า</th>
+                                                  <th>ประเภทสินค้า</th>
+                                                  <th>ชนิดบรรจุภัณฑ์</th>
+                                                  <th>น้ำหนักสินค้า</th>
+                                                  <th>Remark</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% for product in product_in_store %}
+                                            <tr class="odd gradeX">
+                                              <th>
+                                                <input type="checkbox" name="product_select" value="{{product.pk}}" class="action-select">
+                                              </th>
+
+                                                <td>{{  product.name  }}</td>
+                                                <td>
+
+                                                  <div class="input-group spinner">
+                                                    <input type="text" name="quantity" id="q-{{product.pk}}" class="form-control" value="{{  product.quantity  }}" min="1" max="{{  product.quantity  }}">
+                                                    <div class="input-group-btn-vertical">
+                                                      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                                                      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+
+                                                    </div>
+
+                                                  </div>
+
+                                                  </div>
+                                                </td>
+
+                                                <td>{{  product.detail  }}</td>
+                                                <td>{{  product.type_product  }}</td>
+                                                <td>{{  product.type_packaging.name  }}</td>
+                                                <td class="center">{{  product.weight_product  }} kg</td>
+                                                <td class="center">{{  product.mark  }}</td>
+                                            </tr>
+                                            {% endfor %}
+
+                                          </tbody>
+                                      </table>
+
+
+                                      <div class="col-12">
+                                        <button id="send_order_btn" type="submit" class="button">จัดส่งสินค้า</button>
+                                      </div>
+
+                                        <div id="alert_box">
+
+                                        </div>
+                                  </div>
+                                  <!-- /.panel-body -->
+
+                                  </form>
+
+                                  <div class="collapse row" id="address-group">
+                                    {% for address in list_address %}
+                                      {% if user.address_pk == address.pk %}
+                                        <div class="outer-address col-md-4">
+
+
+                                        <div class="card card-body address_choose address-box" id="address-{{ address.pk }}">
+
+                                        <div class="card-header">
+                                          ใช้ที่อยู่นี้จัดส่งสินค้า
+                                        </div>
+                                      {% else %}
+                                        <div class="outer-address col-md-4">
+                                        <div class="card card-body address_unchoose address-box">
+                                          <div class="card-header">
+                                            เลือก
+                                          </div>
+                                      {% endif %}
+                                      <div class="address">
+
+                                        <div class="card">
+                                          <div class="card-body">
+                                            <h5 class="card-title">ที่อยู่จัดส่ง {{ forloop.counter }}</h5>
+                                            <form class="f-e-a">
+                                                {% csrf_token %}
+                                              <div class="form-group">
+                                                <div class="textwrapper">{{ address.detail }}</div>
+                                              </div>
+                                              <input type="hidden" name="address_pk" value="{{ address.pk }}" hidden>
+
+                                            </form>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                      </div>
+                                    {% endfor %}
+
+                                    <div class="card card-body plus col-md-4">
+                                      <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                              <i class="fa fa-plus-square fa-6" aria-hidden="true"><div>เพิ่มที่อยู่จัดส่ง</div></i>
+                                        </div>
+                                      </div>
+
+                                  </div>
+                                  </div>
+
+
+                              </div>
+
+
+                              </div>
+                              <!-- /.panel -->
+
+
+                            {% else %}
+
+                            <div class="col-lg-12">
+                                <div class="panel-default">
+                                    <div class="panel-heading">
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                          </div>
+                          <!-- /.col-lg-12 -->
+
+
+                      <!-- /.row -->
+                      {% if list_order %}
+                      <div class="row review_order">
+                                      <div class="col-lg-12">
+                                          <div class="panel-default">
+                                            <div class="panel-heading">
+                                                กำลังรอการตรวจสอบ
+                                            </div>
+                                              <!-- /.panel-heading -->
+                                              <div class="panel-body row">
+                                                  {% for ol in list_order %}
+
+                                                <div class="col-md-8">
+                                                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                      <thead>
+                                                          <tr>
+
+                                                              <th>ชื่อ</th>
+                                                              <th>จำนวนสินค้า</th>
+                                                              <th>รายละเอียดสินค้า</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        {% for item in list_items %}
+                                                        <tr class="odd gradeX">
+                                                            {% if item.order.pk == ol.pk %}
+                                                            <td>{{  item.product.name  }}</td>
+                                                            <td>{{  item.quantity  }}</td>
+                                                            <td>{{  item.product.detail  }}</td>
+                                                            {% endif %}
+                                                        </tr>
+
+                                                        {% endfor %}
+
+                                                      </tbody>
+
+                                                  </table>
+
+                                                </div>
+                                                  <div class="well col-md-4">
+                                                      <h4>ที่อยู่จัดส่งสินค้า</h4>
+                                                      <p>{{ ol.address.detail }}</p>
+
+                                                  </div>
+
+                                                    <div class="line col-md-12"></div>
+                                                  {% endfor %}
+
+
+                                              </div>
+                                              <!-- /.panel-body -->
+                                          </div>
+                                          <!-- /.panel -->
+                                      </div>
+                                      <!-- /.col-lg-12 -->
+                          </div>
+                          {% endif %}
+                                  <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="edit_address" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">กรอกที่อยู่จัดส่ง</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id ="address-form-edit">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="textwrapper"><textarea name="detail" class="address-area" form="address-form-edit" placeholder="ที่อยู่ปลายทางที่ต้องการจัดส่งสินค้า"></textarea></div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn ">บันทึก</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+  {% block js %}
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+
+    var frm = $('#order-form');
+
+    //$('#file').prop('disabled', true);
+
+
+    frm.submit(function (event) {
+
+        $('#alert_box').empty();
+        $('#send_order_btn').attr("disabled", true);
+
+        var isSomeCheck = false;
+        $('.action-select').each(function () {
+            if (this.checked == "1") {
+                isSomeCheck = true;
+                return;
+            }
+        });
+        if (isSomeCheck) {
+
+          $('.action-select').each(function () {
+              if (this.checked == "0") {
+
+                  $('#q-' +$(this).val()+'').prop('disabled', true);
+              }
+
+          });
+
+          var formData = new FormData(this);
+
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'order_transaction' %}',
+                data: formData,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                  if (data.error) {
+
+                    switch(data.status*(-1)) {
+                        case 1:
+                            $('#alert_box').append( "<div class='alert alert-danger' role='alert'>เกิดเหตุขัดข้องกรุณาลองใหม่อีกครั้ง</div>" );
+                            console.log("error with status -1")
+                            break;
+                        case 2:
+                            $('#alert_box').append( "<div class='alert alert-danger' role='alert'>เกิดเหตุขัดข้องกรุณาลองใหม่อีกครั้ง</div>" );
+                            console.log("error with status -2")
+                            break;
+                        case 3:
+                            $('#alert_box').append( "<div class='alert alert-danger' role='alert'>คุณลูกค้ากรุณาเลือกที่อยู่จัดส่งหากยังไม่มีให้ทำการเพิ่มที่อยู่จัดส่งค่ะ</div>" );
+                            console.log("error with status -3")
+                            break;
+                        default:
+                            $('#alert_box').append( "<div class='alert alert-danger' role='alert'>เกิดเหตุขัดข้องกรุณาลองใหม่อีกครั้ง</div>" );
+                            console.log("error")
+                            console.log(data.status)
+                    }
+
+                  }
+                  else {
+                    console.log("success")
+
+                      window.location.href = '{% url 'program_page' %}';
+                  }
+                  $('#send_order_btn').attr("disabled", false);
+                },
+                error: function(data) {
+                  $('#send_order_btn').attr("disabled", false);
+                  console.log(data);
+
+                }
+            });
+
+        }
+        else {
+          $('#alert_box').append( "<div class='alert alert-danger' role='alert'>โปรดเลือกสินค้าเพื่อทำการจัดส่ง</div>" );
+
+          console.log("please select item");
+          $('#send_order_btn').attr("disabled", false);
+        }
+
+        $('.action-select').each(function () {
+            if (this.checked == "0") {
+
+                $('#q-' +$(this).val()+'').prop('disabled', false);
+            }
+
+        });
+        return false;
+    });
+
+
+    $("#check_all").click(function () {
+
+        var check = $(".action-select").prop('checked', $(this).prop('checked'));
+        if ($('#address-group').hasClass("in")) {
+
+          var isBool = false;
+        $('.action-select').each(function () {
+            if (this.checked == "1") {
+                $('.collapse').collapse('show')
+                isBool = true;
+            }
+        });
+          if (isBool == false) {
+            $("#check_all").prop('checked', false);
+            $('.collapse').collapse('hide')
+          }
+        }
+        else {
+
+          $('.collapse').collapse('show')
+
+        }
+    });
+    $(".action-select").click(function () {
+        var isBool = false;
+      $('.action-select').each(function () {
+          if (this.checked == "1") {
+              $('.collapse').collapse('show')
+              isBool = true;
+          }
+      });
+        if (isBool == false) {
+          $("#check_all").prop('checked', false);
+          $('.collapse').collapse('hide')
+        }
+    });
+
+    $('.spinner .btn:first-of-type').on('click', function() {
+      var btn = $(this);
+      var input = btn.closest('.spinner').find('input');
+      if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {
+       input.val(parseInt(input.val(), 10) + 1);
+      } else {
+       btn.next("disabled", true);
+      }
+      });
+      $('.spinner .btn:last-of-type').on('click', function() {
+      var btn = $(this);
+      var input = btn.closest('.spinner').find('input');
+      if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {
+       input.val(parseInt(input.val(), 10) - 1);
+      } else {
+       btn.prev("disabled", true);
+      }
+      });
+      $('.form-control').on('focusout', function() {
+
+        var input =  $(this);
+
+          if (parseInt(input.val()) < parseInt(input.attr('max')) && parseInt(input.val()) > 0 ) {
+
+            input.val(parseInt(input.val()));
+          } else {
+            input.val(parseInt(input.attr('max')));
+          }
+
+
+      });
+    });
+
+    $('.plus').on('click', function() {
+      console.log("click");
+      $('#edit_address').modal('show');
+    });
+    var frm = $('#address-form-edit');
+    frm.submit(function (event) {
+
+    event.preventDefault()
+        var formData = new FormData(this);
+        console.log("insilde");
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'save_address' %}',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                $("[class*='address_choose']").removeClass("address_choose").addClass("address_unchoose")
+                $(data.address).insertBefore( ".plus" );
+                $('#edit_address').modal('hide');
+
+
+            },
+            error: function(data) {
+
+              console.log(data);
+
+            }
+        });
+
+        return false;
+
+    });
+
+
+    $(".outer-address").click(function () {
+      var pk = $(this).find('input[name=address_pk]').val();
+      var ele = $(this)
+      console.log(pk);
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'change_user_address' %}',
+            data: {'address_pk' : pk},
+            dataType: 'json',
+            success: function (data) {
+
+                $("[class*='address_choose']").removeClass("address_choose").addClass("address_unchoose")
+                $("[class*='card-header']").html("เลือก")
+                ele.find( ".address-box" ).removeClass("address_unchoose")
+                ele.find( ".address-box" ).addClass("address_choose")
+                ele.find( ".address-box" ).find("[class*='card-header']").html("ใช้ที่อยู่นี้จัดส่งสินค้า")
+            },
+            error: function(data) {
+
+              console.log(data);
+
+            }
+        });
+    });
+
+  </script>
+  {% endblock %}
